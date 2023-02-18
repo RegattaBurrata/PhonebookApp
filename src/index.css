@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 20;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +10,45 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+h2 {
+  font-size: 18px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin: 20px;
+}
+
+.filterform {
+  margin: 20px;
+}
+
+.infoblock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px;
+  border-bottom: 1px solid black;
+}
+
+input {
+  width: 140px;
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  margin: 10px;
+  font-size: 20px;
+}
+
+button {
+  height: 44px;
+  width: 100px;
+  background: rgb(17, 77, 155);
+  color: white;
+  border: none;
+  border-radius: 8px;
 }
