@@ -30,9 +30,13 @@ h2 {
 
 .infoblock {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   margin: 20px;
   border-bottom: 1px solid black;
+}
+
+.delete-button {
+  cursor: pointer;
 }
 
 input {

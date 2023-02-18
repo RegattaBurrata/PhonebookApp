@@ -4,6 +4,7 @@ import Info from './components/Info';
 import Filter from './components/Filter';
 import PersonForm from './components/PersonForm';
 import axios from 'axios';
+import personService from './services/persons'
 
 const App = () => {
 
@@ -21,10 +22,10 @@ const App = () => {
   const [filterPerson, setFilterPerson] = useState('');
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(res => {
-        setPersons(res.data)
+    personService
+      .getAll()
+      .then(initialPersons => {
+        setPersons(initialPersons)
       })
   }, [])
 
@@ -53,9 +54,13 @@ const App = () => {
         name: newName,
         number: newNumber,
       };
-      setPersons(persons.concat(newObj));
-      setNewName('');
-      setNewNumber('');
+      personService
+        .create(newObj)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson));
+          setNewName('');
+          setNewNumber('');
+        })
     }
   };
 
@@ -71,6 +76,16 @@ const App = () => {
     setDisplay(persons);
   }, [persons]);
 
+  const deletePerson = (e) => {
+    e.preventDefault();
+    const personToDeleteId = e.target.id
+    personService
+      .del(personToDeleteId)
+      .then(() => {
+        setPersons(persons.filter(person => person.id != personToDeleteId))
+      })
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -85,7 +100,7 @@ const App = () => {
       />
       <h2>Numbers</h2>
       {display.map((person) => (
-        <Info item={person} />
+        <Info item={person} id={person.id} key={person.id} deletePerson={deletePerson} />
       ))}
     </div>
   );
